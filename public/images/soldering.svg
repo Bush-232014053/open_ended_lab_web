@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Soldering iron">
+  <rect width="800" height="500" fill="#4a2c0a"/>
+  <rect x="160" y="230" width="360" height="40" rx="12" fill="#f4a261"/>
+  <polygon points="520,230 680,200 680,300 520,270" fill="#c9d6e3"/>
+  <circle cx="200" cy="250" r="28" fill="#1a73e8"/>
+  <rect x="140" y="320" width="200" height="18" rx="8" fill="#2a9d8f"/>
+  <text x="400" y="430" text-anchor="middle" fill="#fff" font-family="Arial" font-size="28">Soldering Iron</text>
+</svg>

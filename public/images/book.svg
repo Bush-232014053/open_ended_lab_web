@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Textbook">
+  <rect width="800" height="500" fill="#7a3e12"/>
+  <rect x="230" y="80" width="340" height="340" rx="8" fill="#c45c26"/>
+  <rect x="250" y="100" width="300" height="300" rx="4" fill="#f6e7c8"/>
+  <rect x="280" y="140" width="240" height="16" rx="4" fill="#1a73e8"/>
+  <rect x="280" y="180" width="200" height="12" rx="4" fill="#8a6a4a"/>
+  <rect x="280" y="210" width="220" height="12" rx="4" fill="#8a6a4a"/>
+  <rect x="280" y="240" width="160" height="12" rx="4" fill="#8a6a4a"/>
+  <text x="400" y="455" text-anchor="middle" fill="#fff" font-family="Arial" font-size="28">Textbook</text>
+</svg>
