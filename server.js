@@ -10,8 +10,9 @@ const borrowsRouter = require("./src/routes/borrows");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProd = process.env.NODE_ENV === "production";
 
-// parse form/json data
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -19,7 +20,12 @@ app.use(
     secret: process.env.SESSION_SECRET || "campus-library-lab",
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 8 }
+    cookie: {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 8
+    }
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
@@ -35,8 +41,8 @@ async function start() {
     res.json({ ok: true });
   });
 
-  app.listen(PORT, () => {
-    console.log("Campus Library running at http://localhost:" + PORT);
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log("Campus Library running on port " + PORT);
   });
 }
 

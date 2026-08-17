@@ -1,14 +1,25 @@
 const mysql = require("mysql2/promise");
 const bcrypt = require("bcryptjs");
 
-function dbConfig() {
-  return {
+function dbConfig(includeDatabase) {
+  const config = {
     host: process.env.DB_HOST || "localhost",
+    port: Number(process.env.DB_PORT || 3306),
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     waitForConnections: true,
     connectionLimit: 10
   };
+
+  if (includeDatabase) {
+    config.database = process.env.DB_NAME || "campus_library";
+  }
+
+  if (process.env.DB_SSL === "true") {
+    config.ssl = { rejectUnauthorized: false };
+  }
+
+  return config;
 }
 
 async function waitForMysql(retries = 20) {
@@ -28,16 +39,20 @@ async function waitForMysql(retries = 20) {
 async function initDatabase() {
   await waitForMysql();
 
-  const root = await mysql.createConnection(dbConfig());
-  await root.query(
-    "CREATE DATABASE IF NOT EXISTS campus_library CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
-  );
+  const dbName = process.env.DB_NAME || "campus_library";
+  const root = await mysql.createConnection(dbConfig(false));
+  try {
+    await root.query(
+      "CREATE DATABASE IF NOT EXISTS `" +
+        dbName.replace(/`/g, "") +
+        "` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+    );
+  } catch (err) {
+    console.log("Could not create database (ok on hosted MySQL):", err.message);
+  }
   await root.end();
 
-  const pool = mysql.createPool({
-    ...dbConfig(),
-    database: process.env.DB_NAME || "campus_library"
-  });
+  const pool = mysql.createPool(dbConfig(true));
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS users (
