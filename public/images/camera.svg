@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="DSLR camera">
+  <rect width="800" height="500" fill="#123a6b"/>
+  <rect x="180" y="150" width="360" height="220" rx="28" fill="#1d4e89"/>
+  <rect x="210" y="120" width="120" height="40" rx="8" fill="#2a9d8f"/>
+  <circle cx="430" cy="250" r="78" fill="#083d8a"/>
+  <circle cx="430" cy="250" r="48" fill="#7ec8ff"/>
+  <circle cx="430" cy="250" r="22" fill="#0b4f9c"/>
+  <rect x="220" y="190" width="70" height="28" rx="6" fill="#f4c430"/>
+  <text x="400" y="430" text-anchor="middle" fill="#fff" font-family="Arial" font-size="28">DSLR Camera</text>
+</svg>
